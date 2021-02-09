@@ -27,7 +27,7 @@
   "devDependencies": {
     "cz-conventional-changelog": "^3.0.2",
     "semantic-release-cli": "^5.2.3",
-    "semantic-release": "^15.14.0"
+    "semantic-release": "^17.2.3"
   },
   "config": {
     "commitizen": {
