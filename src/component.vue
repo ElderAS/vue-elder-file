@@ -196,17 +196,24 @@ export default {
     remove(item) {
       this.$emit('input', this.multiple ? this.value.filter((v) => v !== item) : null)
     },
-    onChange(e) {
-      this.run(e.target.files)
+    async onChange(e) {
+      let files = e.target.files
+      if (this.uploadOptions.preTransform) files = await this.uploadOptions.preTransform(e)
+
+      this.run(files)
       this.$refs.input.value = null
     },
-    onDrop(e) {
+    async onDrop(e) {
       e.preventDefault()
       this.onLeave()
       if (this.isReadonly || !e.dataTransfer.files.length) return
+
+      let files = e.dataTransfer.files
+      if (this.uploadOptions.preTransform) files = await this.uploadOptions.preTransform(e)
+
       this.$refs.input.files = e.dataTransfer.files
       this.$refs.input.dispatchEvent(new InputEvent('input'))
-      this.run(e.dataTransfer.files)
+      this.run(files)
     },
     onDragOver(e) {
       this.isValidDragOver = Array.from(e.dataTransfer.items).every((e) => IsAccepted(e, this.accept))
