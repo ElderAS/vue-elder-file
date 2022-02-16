@@ -20,6 +20,7 @@
         :value="serializeComp(item)"
         @rename="($ev) => (item.name = $ev)"
         @delete="remove(item)"
+        :additional-action="additionalAction"
       />
       <template #footer>
         <div v-if="!thumbnails.length && isReadonly" class="elder-file__thumbnail" v-html="nofilesMessage"></div>
@@ -108,6 +109,10 @@ export default {
       type: Object,
       default: () => ({}),
     },
+    additionalAction: {
+      type: Object,
+      default: () => ({}),
+    },
   },
   data() {
     return {
@@ -162,6 +167,7 @@ export default {
   },
   methods: {
     run(files) {
+      debugger
       files = Array.from(files).filter((f) => IsAccepted(f, this.accept))
 
       this.queue.total = files.length

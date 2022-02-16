@@ -20,6 +20,12 @@
         </a>
       </div>
     </div>
+    <ButtonComponent
+      class="elder-file__thumbnail-additional-action"
+      v-if="additionalAction && additionalAction.condition(value)"
+      :label="additionalAction.label"
+      @click="additionalAction.action(value)"
+    />
     <div class="elder-file__thumbnail-actions">
       <FontAwesomeIcon
         v-if="!readonly"
@@ -28,6 +34,7 @@
         class="elder-file__thumbnail-delete"
         @click="$emit('delete')"
       />
+
       <FontAwesomeIcon v-if="sortable" icon="arrows-alt-v" class="elder-file__thumbnail-sort" title="Sort" />
     </div>
   </div>
@@ -37,6 +44,7 @@
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { BytesToSize } from './utils'
 import { Options } from '../index'
+import { ButtonComponent } from 'vue-elder-button'
 
 const iconPatters = [
   { pattern: /text.*/, icon: 'file-alt' },
@@ -54,6 +62,10 @@ export default {
     readonly: Boolean,
     rename: Boolean,
     sortable: Boolean,
+    additionalAction: {
+      type: Object,
+      default: () => ({}),
+    },
   },
   computed: {
     icon() {
@@ -71,6 +83,7 @@ export default {
   },
   components: {
     FontAwesomeIcon,
+    ButtonComponent,
   },
 }
 </script>
@@ -152,6 +165,9 @@ export default {
       opacity: 1;
       color: GetVariable('primary');
     }
+  }
+  &-additional-action {
+    font-size: 0.8em;
   }
 
   &-actions {
