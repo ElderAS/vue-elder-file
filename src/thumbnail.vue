@@ -20,12 +20,7 @@
         </a>
       </div>
     </div>
-    <ButtonComponent
-      class="elder-file__thumbnail-additional-action"
-      v-if="additionalAction && additionalAction.condition(value)"
-      :label="additionalAction.label"
-      @click="additionalAction.action(value)"
-    />
+    <slot name="action" />
     <div class="elder-file__thumbnail-actions">
       <FontAwesomeIcon
         v-if="!readonly"
@@ -62,10 +57,6 @@ export default {
     readonly: Boolean,
     rename: Boolean,
     sortable: Boolean,
-    additionalAction: {
-      type: Object,
-      default: () => ({}),
-    },
   },
   computed: {
     icon() {
@@ -165,9 +156,6 @@ export default {
       opacity: 1;
       color: GetVariable('primary');
     }
-  }
-  &-additional-action {
-    font-size: 0.8em;
   }
 
   &-actions {
