@@ -39,7 +39,6 @@
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { BytesToSize } from './utils'
 import { Options } from '../index'
-import { ButtonComponent } from 'vue-elder-button'
 
 const iconPatters = [
   { pattern: /text.*/, icon: 'file-alt' },
@@ -74,7 +73,6 @@ export default {
   },
   components: {
     FontAwesomeIcon,
-    ButtonComponent,
   },
 }
 </script>

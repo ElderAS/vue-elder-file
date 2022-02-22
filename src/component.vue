@@ -166,7 +166,6 @@ export default {
   },
   methods: {
     run(files) {
-      debugger
       files = Array.from(files).filter((f) => IsAccepted(f, this.accept))
 
       this.queue.total = files.length
