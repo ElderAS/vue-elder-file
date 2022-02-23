@@ -20,7 +20,11 @@
         :value="serializeComp(item)"
         @rename="($ev) => (item.name = $ev)"
         @delete="remove(item)"
-      />
+      >
+        <template #action>
+          <slot name="action" :item="item" />
+        </template>
+      </thumbnail>
       <template #footer>
         <div v-if="!thumbnails.length && isReadonly" class="elder-file__thumbnail" v-html="nofilesMessage"></div>
       </template>

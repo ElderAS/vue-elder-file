@@ -20,6 +20,7 @@
         </a>
       </div>
     </div>
+    <slot name="action" />
     <div class="elder-file__thumbnail-actions">
       <FontAwesomeIcon
         v-if="!readonly"
@@ -28,6 +29,7 @@
         class="elder-file__thumbnail-delete"
         @click="$emit('delete')"
       />
+
       <FontAwesomeIcon v-if="sortable" icon="arrows-alt-v" class="elder-file__thumbnail-sort" title="Sort" />
     </div>
   </div>
