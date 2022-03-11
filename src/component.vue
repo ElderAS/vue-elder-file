@@ -61,6 +61,7 @@
       :current="queue.counter"
       :total="queue.total"
     ></Uploader>
+    <slot name="below" />
   </div>
 </template>
 
