@@ -15,7 +15,7 @@
       />
       <div class="elder-file__thumbnail-info-footer">
         <span v-if="value.size" class="elder-file__thumbnail-size">{{ value.size | size }}</span>
-        <a :href="value.url" target="_blank" title="Download" download class="elder-file__thumbnail-download">
+        <a :href="value.url" target="_blank" title="Download" class="elder-file__thumbnail-download">
           <FontAwesomeIcon icon="arrow-alt-circle-down"></FontAwesomeIcon>
         </a>
       </div>
