@@ -21,8 +21,8 @@
         @rename="($ev) => (item.name = $ev)"
         @delete="remove(item)"
       >
-        <template #action>
-          <slot name="action" :item="item" />
+        <template v-for="(_, slot) of $scopedSlots" v-slot:[slot]>
+          <slot :name="slot" :item="item" />
         </template>
       </thumbnail>
       <template #footer>

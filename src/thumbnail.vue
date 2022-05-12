@@ -1,7 +1,9 @@
 <template>
   <div class="elder-file__thumbnail">
     <div class="elder-file__thumbnail-icon">
-      <FontAwesomeIcon :icon="icon"></FontAwesomeIcon>
+      <slot name="icon">
+        <FontAwesomeIcon :icon="icon"></FontAwesomeIcon>
+      </slot>
     </div>
     <div class="elder-file__thumbnail-info">
       <input
@@ -97,11 +99,12 @@ export default {
   background-color: white;
 
   &-icon {
-    font-size: 1.5em;
-
     margin-right: $spacing;
 
-    opacity: 0.5;
+    .svg-inline--fa {
+      font-size: 1.5em;
+      opacity: 0.5;
+    }
   }
 
   &-name {
