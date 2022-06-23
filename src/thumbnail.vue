@@ -17,7 +17,7 @@
       />
       <div class="elder-file__thumbnail-info-footer">
         <span v-if="value.size" class="elder-file__thumbnail-size">{{ value.size | size }}</span>
-        <a :href="value.url" target="_blank" title="Download" class="elder-file__thumbnail-download">
+        <a :href="value.url" title="Download" class="elder-file__thumbnail-download" @click.prevent="download">
           <FontAwesomeIcon icon="arrow-alt-circle-down"></FontAwesomeIcon>
         </a>
       </div>
@@ -68,6 +68,22 @@ export default {
   methods: {
     unfocus() {
       this.$refs.input.blur()
+    },
+    download() {
+      fetch(this.value.url, { headers: { 'Cache-Control': 'no-cache' } })
+        .then((res) => res.blob())
+        .then((blob) => {
+          const blobURL = URL.createObjectURL(blob)
+          const a = document.createElement('a')
+          a.href = blobURL
+          a.style = 'display: none'
+          if (this.value.name) a.download = this.value.name
+
+          document.body.appendChild(a)
+          a.click()
+
+          document.body.removeChild(a)
+        })
     },
   },
   filters: {
