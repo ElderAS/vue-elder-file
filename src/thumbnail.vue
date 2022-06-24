@@ -74,16 +74,24 @@ export default {
         .then((res) => res.blob())
         .then((blob) => {
           const blobURL = URL.createObjectURL(blob)
-          const a = document.createElement('a')
-          a.href = blobURL
-          a.style = 'display: none'
-          if (this.value.name) a.download = this.value.name
-
-          document.body.appendChild(a)
-          a.click()
-
-          document.body.removeChild(a)
+          return trigger(blobURL, this.value.name)
         })
+        .catch((err) => {
+          return trigger(this.value.url, this.value.name, '_blank')
+        })
+
+      let trigger = (href, name, target) => {
+        const a = document.createElement('a')
+        a.href = href
+        a.style = 'display: none'
+        if (target) a.target = target
+        if (name) a.download = name
+
+        document.body.appendChild(a)
+        a.click()
+
+        document.body.removeChild(a)
+      }
     },
   },
   filters: {
