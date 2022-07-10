@@ -5,8 +5,9 @@ const CustomMaps = {
 }
 
 function AttributeBoolean(key) {
-  return function() {
-    return ['', true, 'true'].includes(this.$attrs[key])
+  key = key instanceof Array ? key : [key]
+  return function () {
+    return key.some((k) => ['', true, 'true'].includes(this.$attrs[k]))
   }
 }
 
@@ -21,8 +22,8 @@ function GetFileExtensions(accept) {
   if (!accept) return []
   return accept
     .split(',')
-    .map(v => v.trim())
-    .map(v => {
+    .map((v) => v.trim())
+    .map((v) => {
       if (v.startsWith('.')) return v.substring(1)
       if (v in CustomMaps) return CustomMaps[v]
       return Mime.getExtension(v)
@@ -34,8 +35,8 @@ function IsAccepted(file, accept) {
   if (!accept) return true
   return accept
     .split(',')
-    .map(v => v.trim())
-    .some(v => {
+    .map((v) => v.trim())
+    .some((v) => {
       if (v.startsWith('.')) {
         let type = Mime.getType(v.substring(1))
         return type === file.type

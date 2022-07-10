@@ -124,7 +124,7 @@ export default {
   },
   computed: {
     isRequired: AttributeBoolean('required'),
-    isReadonly: AttributeBoolean('readonly'),
+    isReadonly: AttributeBoolean(['readonly', 'disabled']),
     dropareaClass() {
       return {
         'elder-file__droparea--active': this.isDragOver,
