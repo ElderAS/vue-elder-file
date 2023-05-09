@@ -8,14 +8,15 @@
       v-if="thumbnails.length || isReadonly"
       v-model="thumbnails"
       :disabled="!multiple || !sortable"
+      :animation="200"
       class="elder-file__thumbnails"
       handle=".elder-file__thumbnail-sort"
     >
       <thumbnail
         v-for="(item, index) in thumbnails"
-        :key="index"
+        :key="item.url"
         :readonly="isReadonly"
-        :sortable="sortable && multiple && thumbnails.length > 1"
+        :sortable="!isReadonly && sortable && multiple && thumbnails.length > 1"
         :rename="rename === true"
         :value="serializeComp(item)"
         @rename="($ev) => (item.name = $ev)"
@@ -252,12 +253,9 @@ export default {
 .elder-file {
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
 
   text-align: left;
-
-  & > * + * {
-    margin-top: 0.5rem;
-  }
 
   &__label {
     font-weight: bold;
@@ -355,10 +353,12 @@ export default {
   }
 
   &__thumbnails {
-    $space: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 
-    & > * + * {
-      margin-top: $space;
+    .sortable-ghost {
+      opacity: 0;
     }
   }
 }

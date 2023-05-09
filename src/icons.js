@@ -8,14 +8,14 @@ import { faFileExcel } from '@fortawesome/free-solid-svg-icons/faFileExcel'
 import { faFilePowerpoint } from '@fortawesome/free-solid-svg-icons/faFilePowerpoint'
 import { faFileArchive } from '@fortawesome/free-solid-svg-icons/faFileArchive'
 import { faFile } from '@fortawesome/free-solid-svg-icons/faFile'
-import { faArrowAltCircleDown } from '@fortawesome/free-solid-svg-icons/faArrowAltCircleDown'
+import { faDownload } from '@fortawesome/free-solid-svg-icons/faDownload'
 import { faArrowsAltV } from '@fortawesome/free-solid-svg-icons/faArrowsAltV'
 import { faBan } from '@fortawesome/free-solid-svg-icons/faBan'
 
 library.add(
   faBan,
   faArrowsAltV,
-  faArrowAltCircleDown,
+  faDownload,
   faTimes,
   faFile,
   faFilePdf,

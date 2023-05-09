@@ -1,5 +1,10 @@
 <template>
-  <div class="elder-file__thumbnail">
+  <component
+    :is="component"
+    :class="['elder-file__thumbnail', readonly && 'elder-file__thumbnail--clickable']"
+    v-bind="bindings"
+    v-on="handlers"
+  >
     <div class="elder-file__thumbnail-icon">
       <slot name="icon">
         <FontAwesomeIcon :icon="icon"></FontAwesomeIcon>
@@ -17,11 +22,17 @@
       />
       <div class="elder-file__thumbnail-info-footer">
         <span v-if="value.size" class="elder-file__thumbnail-size">{{ value.size | size }}</span>
-        <a :href="value.url" title="Download" class="elder-file__thumbnail-download" @click.prevent="download">
-          <FontAwesomeIcon icon="arrow-alt-circle-down"></FontAwesomeIcon>
-        </a>
       </div>
     </div>
+    <a
+      v-if="!readonly"
+      :href="value.url"
+      title="Download"
+      class="elder-file__thumbnail-download"
+      @click.prevent="download"
+    >
+      <FontAwesomeIcon icon="download"></FontAwesomeIcon>
+    </a>
     <slot name="action" />
     <div class="elder-file__thumbnail-actions">
       <FontAwesomeIcon
@@ -34,7 +45,7 @@
 
       <FontAwesomeIcon v-if="sortable" icon="arrows-alt-v" class="elder-file__thumbnail-sort" title="Sort" />
     </div>
-  </div>
+  </component>
 </template>
 
 <script>
@@ -63,6 +74,25 @@ export default {
     icon() {
       let match = [...Options.icons, ...iconPatters].find((e) => this.value.type.match(e.pattern)) || {}
       return match.icon || 'file'
+    },
+    component() {
+      if (this.readonly) return 'a'
+      return 'div'
+    },
+    handlers() {
+      if (!this.readonly) return {}
+      return {
+        click: (event) => {
+          event.preventDefault()
+          this.download()
+        },
+      }
+    },
+    bindings() {
+      if (!this.readonly) return {}
+      return {
+        title: this.readonly ? 'Download' : null,
+      }
     },
   },
   methods: {
@@ -115,16 +145,24 @@ export default {
 
   display: flex;
   align-items: center;
+  gap: $spacing;
 
   padding: $spacing;
 
   border: 1px solid GetVariable('border-color');
   border-radius: GetVariable('border-radius');
   background-color: white;
+  color: inherit;
+
+  &--clickable {
+    cursor: pointer;
+  }
+
+  &-sort {
+    cursor: grab !important;
+  }
 
   &-icon {
-    margin-right: $spacing;
-
     .svg-inline--fa {
       font-size: 1.5em;
       opacity: 0.5;
@@ -192,7 +230,6 @@ export default {
     flex-direction: column;
 
     margin-left: auto;
-    padding-left: $spacing;
 
     transition: opacity 150ms ease-out, transform 150ms ease-out;
     transform: translateX(0);
