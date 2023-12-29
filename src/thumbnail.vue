@@ -25,7 +25,7 @@
       </div>
     </div>
     <a
-      v-if="!readonly"
+      v-if="value.url"
       :href="value.url"
       title="Download"
       class="elder-file__thumbnail-download"
