@@ -32,7 +32,9 @@ function GetFileExtensions(accept) {
 }
 
 function IsAccepted(file, accept) {
+  if (!file.type && !accept) return false
   if (!accept) return true
+  if (accept === 'directory' && !file.type) return true //directory don`t have type
   return accept
     .split(',')
     .map((v) => v.trim())
