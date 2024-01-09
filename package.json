@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no tests yet\"",
-    "semantic-release": "dotenv semantic-release"
+    "semantic-release": "semantic-release"
   },
   "repository": {
     "type": "git",
