@@ -29,7 +29,7 @@
       :href="value.url"
       title="Download"
       class="elder-file__thumbnail-download"
-      @click.prevent="download"
+      @click.self="download"
     >
       <FontAwesomeIcon icon="download"></FontAwesomeIcon>
     </a>
