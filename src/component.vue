@@ -168,7 +168,9 @@ export default {
   },
   methods: {
     run(files) {
-      files = Array.from(files).filter((f) => IsAccepted(f, this.accept))
+      files = Array.from(files).filter((f) =>
+        IsAccepted(f, this.accept, { fromDirectory: this.accept === 'directory' }),
+      )
 
       this.queue.total = files.length
       this.queue.counter = 0
