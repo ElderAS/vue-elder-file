@@ -31,10 +31,15 @@ function GetFileExtensions(accept) {
     .flat()
 }
 
-function IsAccepted(file, accept) {
+function IsAccepted(file, accept, options = { fromDirectory: false }) {
+  const { fromDirectory } = options
+
+  //folder don`t have type but if items is from a directory ->  accept
+  if (accept === 'directory' && (fromDirectory || !file.type)) return true
+
   if (!file.type && !accept) return false
   if (!accept) return true
-  if (accept === 'directory' && !file.type) return true //directory don`t have type
+
   return accept
     .split(',')
     .map((v) => v.trim())
