@@ -29,7 +29,7 @@
       :href="value.url"
       title="Download"
       class="elder-file__thumbnail-download"
-      @click.prevent="downloadComp"
+      @click.prevent="maybeDownload"
     >
       <FontAwesomeIcon icon="download"></FontAwesomeIcon>
     </a>
@@ -123,7 +123,7 @@ export default {
         document.body.removeChild(a)
       }
     },
-    downloadComp() {
+    maybeDownload() {
       if (this.readonly) return
       this.download()
     },
