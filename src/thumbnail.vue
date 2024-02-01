@@ -29,7 +29,7 @@
       :href="value.url"
       title="Download"
       class="elder-file__thumbnail-download"
-      @click.self="download"
+      @click.prevent="downloadComp"
     >
       <FontAwesomeIcon icon="download"></FontAwesomeIcon>
     </a>
@@ -40,7 +40,7 @@
         icon="times"
         title="Remove"
         class="elder-file__thumbnail-delete"
-        @click="$emit('delete')"
+        @click.stop="$emit('delete')"
       />
 
       <FontAwesomeIcon v-if="sortable" icon="arrows-alt-v" class="elder-file__thumbnail-sort" title="Sort" />
@@ -122,6 +122,10 @@ export default {
 
         document.body.removeChild(a)
       }
+    },
+    downloadComp() {
+      if (this.readonly) return
+      this.download()
     },
   },
   filters: {
