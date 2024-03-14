@@ -18,9 +18,7 @@
   },
   "homepage": "https://github.com/ElderAS/vue-elder-file#readme",
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.26",
-    "@fortawesome/free-solid-svg-icons": "^5.12.0",
-    "@fortawesome/vue-fontawesome": "^0.1.9",
+    "@kvass/vue2-icon": "^1.0.3",
     "mime": "^2.4.4",
     "vuedraggable": "^2.23.2"
   },

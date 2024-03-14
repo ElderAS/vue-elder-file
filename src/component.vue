@@ -52,7 +52,7 @@
         <slot v-if="isValidDragOver" name="drop-message" :extensions="extensions">
           <SlotHandler :value="dropMessage" :extensions="extensions" />
         </slot>
-        <FontAwesomeIcon v-else icon="ban" size="lg" />
+        <Icon v-else icon="ban" size="lg" />
       </div>
     </div>
     <Uploader
@@ -68,15 +68,13 @@
 
 <script>
 import { AttributeBoolean, Clone, IsAccepted, GetFileExtensions } from './utils'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import Icon from '@kvass/vue2-icon'
 
 import { Options } from '../index'
 import Draggable from 'vuedraggable'
 import Uploader from './uploader'
 import Thumbnail from './thumbnail'
 import SlotHandler from './SlotHandler'
-
-import './icons'
 
 const QueueTemplate = {
   counter: 0,
@@ -243,7 +241,7 @@ export default {
     Uploader,
     Thumbnail,
     Draggable,
-    FontAwesomeIcon,
+    Icon,
     SlotHandler,
   },
 }
