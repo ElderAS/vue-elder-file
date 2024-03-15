@@ -7,7 +7,7 @@
   >
     <div class="elder-file__thumbnail-icon">
       <slot name="icon">
-        <FontAwesomeIcon :icon="icon"></FontAwesomeIcon>
+        <Icon :icon="icon" />
       </slot>
     </div>
     <div class="elder-file__thumbnail-info">
@@ -31,11 +31,11 @@
       class="elder-file__thumbnail-download"
       @click.prevent="maybeDownload"
     >
-      <FontAwesomeIcon icon="download"></FontAwesomeIcon>
+      <Icon icon="download" />
     </a>
     <slot name="action" />
     <div class="elder-file__thumbnail-actions">
-      <FontAwesomeIcon
+      <Icon
         v-if="!readonly"
         icon="times"
         title="Remove"
@@ -43,13 +43,13 @@
         @click.stop="$emit('delete')"
       />
 
-      <FontAwesomeIcon v-if="sortable" icon="arrows-alt-v" class="elder-file__thumbnail-sort" title="Sort" />
+      <Icon v-if="sortable" icon="arrows-alt-v" class="elder-file__thumbnail-sort" title="Sort" />
     </div>
   </component>
 </template>
 
 <script>
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import Icon from '@kvass/vue2-icon'
 import { BytesToSize } from './utils'
 import { Options } from '../index'
 
@@ -132,7 +132,7 @@ export default {
     size: BytesToSize,
   },
   components: {
-    FontAwesomeIcon,
+    Icon,
   },
 }
 </script>
