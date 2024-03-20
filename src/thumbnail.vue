@@ -40,7 +40,7 @@
         icon="times"
         title="Remove"
         class="elder-file__thumbnail-delete"
-        @click.stop="$emit('delete')"
+        @click.native="$emit('delete')"
       />
 
       <Icon v-if="sortable" icon="arrows-alt-v" class="elder-file__thumbnail-sort" title="Sort" />
